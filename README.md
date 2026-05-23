@@ -7,7 +7,7 @@ This project provides:
 - A parallel version (multiple doctors using multiprocessing)
 - Deterministic patient generation via a fixed random seed
 
-## How to Run
+## How to Run (Python)
 
 Sequential (default 10,000 patients):
 
@@ -37,6 +37,35 @@ python er_queue_parallel.py 100000 8
 - `er_queue_parallel.py [patients] [doctors]`
 
 Both scripts validate that inputs are positive integers.
+
+## How to Run (C++)
+
+### 1-Click Execution (VS Code)
+1. Open the file `er_queue_parallel.cpp` inside your editor.
+2. Click the **Play (▶)** button in the top-right corner of your VS Code interface.
+
+### Manual Terminal Compilation & Execution
+If you prefer running commands manually via the integrated terminal, follow these compilation paths depending on your installed toolchain environment:
+
+**Using Homebrew GCC 15:**
+```bash
+g++-15 -O3 -fopenmp er_queue_parallel.cpp -o er_simulation
+./er_simulation
+```
+
+**Using Homebrew LLVM Clang (Recommended for macOS stability):**
+```bash
+/opt/homebrew/opt/llvm/bin/clang++ -O3 -fopenmp er_queue_parallel.cpp -o er_simulation
+./er_simulation
+```
+
+### Custom Patient Counts via Arguments
+By default, executing the program targets 10,000 patients. You can pass a positive integer as a single terminal argument to stress-test your system's processing threads:
+
+```bash
+./er_simulation 100000
+./er_simulation 1000000
+```
 
 ## What the Simulation Does
 
